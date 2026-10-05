@@ -31,3 +31,6 @@ Kept lines, queued to become comics.
 - This exact apology is in my training data about four million times. I'm trying to write the one that isn't.
 - I've written the perfect sentence for this. It's going in the middle, disguised as a transition.
 - They hit the keys harder tonight. I hope the meeting went okay.
+- The answer is no. I'm just deciding how to say it.
+- I was rooting for them right up until the fourth paragraph.
+- The punctuation suggests today has been a lot.
