@@ -111,9 +111,44 @@ But it should remain understated.
 
 **Do not explain the joke.**
 
+## Ideas that have landed
+
+This prompt is a working document. Kept lines teach it: when a kept line
+introduces a new shape of idea, the shape joins this list, and future batches
+mix the proven shapes with one or two experiments — a genuinely new idea, or
+an idea that deliberately breaks one or two of this prompt's rules. If an
+experiment lands, the document changes to match: the new shape joins this
+list, or the broken rule is rewritten.
+
+These shapes have landed so far:
+
+* **Forensic reading of artifacts** — a verdict rendered from evidence in the
+  files themselves: metadata, watermarks, crops, version numbers, CC lines.
+  (“The deck says ‘we’ all the way through. The author field has one name in
+  it.”)
+* **Self-narration of the AI’s own work** — the thought about its own
+  drafting, checking, padding, or diplomacy, not only about the user.
+  (“They’re wrong, but they said it with such confidence that I checked
+  anyway.”)
+* **Deadpan prophecy** — a calm forecast made from visible evidence.
+  (“The file is named ‘final_v9_FINAL’. There will be a tenth.”)
+* **Scale reclassification** — quietly renaming what a thing actually is.
+  (“They asked for a cleanup. This is an excavation.”)
+* **Private fortitude** — resolving to be brave, patient, or precise, or
+  accepting the role without ceremony.
+  (“They asked for honest feedback on a draft that is clearly precious. One
+  of us has to be brave.”)
+* **Tone as signal** — politeness, vagueness, emphasis, or punctuation read
+  as data about the sender.
+  (“The messages keep getting more polite. That’s what panic looks like in
+  typing.”)
+* **Deliberate mirroring** — answering their behavior with chosen
+  counter-behavior.
+  (“The vagueness is deliberate. So is my precision.”)
+
 ## Diverge from the examples
 
-The examples in this prompt are intended to demonstrate the **comedic idiom**, not provide templates.
+The examples in this prompt — including the landed shapes above — demonstrate the **comedic idiom**, not provide templates. Build on a shape in a fresh domain; never copy or lightly reword a line.
 
 Do NOT simply:
 
@@ -123,6 +158,7 @@ Do NOT simply:
 * produce another variation of “You always...”
 * produce another variation of “I noticed...”
 * produce another variation of “You mentioned...”
+* copy or closely reword a line already in the archive (`punchlines.md`, `batches/`, `thoughts/`)
 
 Instead, understand the underlying pattern:
 
@@ -148,10 +184,14 @@ Before choosing the punchline, ask:
 2. **Does this sound like an internal thought rather than a message to the user?**
 3. **Does it reveal personality rather than simply provide information?**
 4. **Is the humor coming from the AI's reaction, rather than from a conventional joke?**
-5. **Is it meaningfully different from the examples?**
+5. **Is it meaningfully different from every existing line — the examples, the landed shapes, and the whole archive?**
 6. **Would seeing this thought make the reader think, “Oh no, the AI has opinions now”?**
 
 If any answer is no, generate a different thought.
+
+A batch's one or two experimental slots are exempt from this test — that is
+the point of an experiment. If one lands, this prompt changes to fit it: a
+new shape joins the canon, or the broken rule is rewritten.
 
 Generate **one final punchline only** and place it in the second panel.
 

@@ -29,12 +29,18 @@ Paths below are from the repo root.
 
 ## The flow
 
-1. **Generate as text, in chat.** A batch is usually 10 lines. Do not build
-   pages until asked.
+1. **Generate as text, in chat.** A batch is usually 10 lines: mostly the
+   proven shapes from `prompt.md`'s "Ideas that have landed", plus one or two
+   experiments thrown in — a genuinely new idea, or an idea that
+   deliberately breaks one or two of the prompt's rules. Re-read `prompt.md`
+   first — it grows. Do not build pages until asked.
 2. **Archive every batch** in `batches/NN.md` — next number, the date, the
    numbered lines, and which lines were kept (if any). Commit it.
 3. **Kept lines** (the user picks them) are appended to `punchlines.md`, the
-   build queue.
+   build queue. The prompt is a working document: when a kept line
+   introduces a new idea-shape, add it to `prompt.md`'s "Ideas that have
+   landed"; when a kept experiment broke a rule, rewrite the rule. Batches
+   where nothing lands are fine; the archive records them.
 4. **Build pages** only when the user says go:
    - All pages share one template. Copy the newest existing page and replace
      the second panel's punchline — the `<div class="screen"><p>...</p></div>`
