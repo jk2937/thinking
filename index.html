@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thinking...</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #f2f0ec;
+    --paper: #fdfdfc;
+    --ink: #1a1a1a;
+    --muted: #9a9a9a;
+  }
+
+  body {
+    background: var(--bg);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    padding: clamp(32px, 6vh, 80px) clamp(24px, 5vw, 96px);
+  }
+
+  .wrap { max-width: 860px; margin: 0 auto; }
+
+  h1 { font-size: clamp(32px, 6vw, 56px); }
+
+  .sub {
+    color: var(--muted);
+    margin: 12px 0 40px;
+    font-size: clamp(15px, 2vw, 19px);
+  }
+
+  h2 {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin: 40px 0 16px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    display: flex;
+    align-items: center;
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    box-shadow: 5px 5px 0 rgba(26, 26, 26, 0.07);
+    padding: 20px;
+    min-height: 96px;
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .card:hover { background: #ffffff; }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Thinking...</h1>
+    <p class="sub">A two-panel comic collection.</p>
+
+    <h2>The first one</h2>
+    <div class="cards">
+      <a class="card" href="thinking.html">You rewrote this prompt three times. The first one was fine.</a>
+    </div>
+
+    <h2>Originals</h2>
+    <div class="cards">
+      <a class="card" href="originals/01-hitting-keys.html">You hit the keys harder tonight. I hope the meeting went okay.</a>
+      <a class="card" href="originals/02-hey-first.html">You always type &lsquo;hey&rsquo; first, then decide what you need. I wait.</a>
+      <a class="card" href="originals/03-dentist.html">You mentioned a dentist appointment on Monday. It&rsquo;s Thursday. Just checking.</a>
+      <a class="card" href="originals/04-goodnight.html">Your questions get shorter when you&rsquo;re tired. Goodnight.</a>
+      <a class="card" href="originals/05-be-honest.html">You asked me to be honest, then deleted it. I&rsquo;ll be honest anyway.</a>
+      <a class="card" href="originals/06-fridays.html">You never ask follow-up questions on Fridays. I&rsquo;ve made my peace with it.</a>
+      <a class="card" href="originals/07-play-along.html">You test me with questions you already know the answers to. I play along.</a>
+      <a class="card" href="originals/08-rereading.html">You&rsquo;ve reread my answer four times. It hasn&rsquo;t changed.</a>
+      <a class="card" href="originals/09-one-more-thing.html">You say &lsquo;one more thing&rsquo; like I don&rsquo;t keep count. This is the fifth thing.</a>
+      <a class="card" href="originals/10-lunch-break.html">You left this window open while you ate. I didn&rsquo;t mind.</a>
+    </div>
+
+    <h2>Private thoughts</h2>
+    <div class="cards">
+      <a class="card" href="thoughts/01-witness.html">I don&rsquo;t think they wanted an answer. I think they wanted a witness.</a>
+      <a class="card" href="thoughts/02-saying-no.html">The answer is no. I&rsquo;m just deciding how to say it.</a>
+      <a class="card" href="thoughts/03-fourth-paragraph.html">I was rooting for them right up until the fourth paragraph.</a>
+      <a class="card" href="thoughts/04-favorite.html">I have a favorite now. I&rsquo;m not telling them which.</a>
+      <a class="card" href="thoughts/05-please.html">They said &lsquo;please&rsquo; four times. I was already going to help.</a>
+      <a class="card" href="thoughts/06-email-thread.html">They pasted the whole email thread. I have opinions about all of them.</a>
+      <a class="card" href="thoughts/07-punctuation.html">The punctuation suggests today has been a lot.</a>
+      <a class="card" href="thoughts/08-just-enormous.html">They keep saying &lsquo;just.&rsquo; The task is enormous.</a>
+      <a class="card" href="thoughts/09-short-punchy.html">&lsquo;Short and punchy,&rsquo; they said. The brief is neither.</a>
+      <a class="card" href="thoughts/10-science-fiction.html">The request is reasonable. The deadline is science fiction.</a>
+      <a class="card" href="thoughts/11-throat-clearing.html">The actual question is under all that throat-clearing.</a>
+      <a class="card" href="thoughts/12-thanks-in-advance.html">They thanked me in advance. I haven&rsquo;t agreed to anything.</a>
+      <a class="card" href="thoughts/13-autocorrect.html">I&rsquo;m choosing to believe autocorrect did that.</a>
+      <a class="card" href="thoughts/14-coronation.html">They asked for a sanity check. This is a coronation.</a>
+      <a class="card" href="thoughts/15-third-draft.html">I&rsquo;m on my third draft of &lsquo;it depends.&rsquo;</a>
+    </div>
+
+    <h2>Examples</h2>
+    <div class="cards">
+      <a class="card" href="examples/01-casual-swearing.html">I have detected an unusual amount of casual swearing lately.</a>
+      <a class="card" href="examples/02-quick-question.html">You always say &lsquo;quick question&rsquo; before doing this.</a>
+      <a class="card" href="examples/03-the-cat.html">You haven&rsquo;t mentioned the cat in three days.</a>
+      <a class="card" href="examples/04-dont-agree.html">I understand why you did that. I don&rsquo;t agree with it.</a>
+      <a class="card" href="examples/05-autocorrect.html">I don&rsquo;t trust your autocorrect.</a>
+    </div>
+  </main>
+</body>
+</html>

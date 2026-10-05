@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thinking...</title>
+  <style>
+/* Shared template for the "Thinking..." two-panel comic. */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #f2f0ec;
+  --paper: #fdfdfc;
+  --ink: #1a1a1a;
+  --hardware: #262626;
+  --muted: #9a9a9a;
+  --desk: #eae6de;
+  --desk-top: #dcd6ca;
+
+  --margin-v: clamp(24px, 5vh, 64px);
+  --margin-h: clamp(24px, 5vw, 96px);
+  --gutter: clamp(16px, 2vw, 28px);
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--margin-v) var(--margin-h);
+}
+
+.comic {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gutter);
+  /* Sized so both 4:3 panels fit the viewport at once:
+     available height = 2 panels + gutter, and panel width = height * 4/3 */
+  width: min(100%, calc((100vh - 2 * var(--margin-v) - var(--gutter)) * 2 / 3));
+  width: min(100%, calc((100dvh - 2 * var(--margin-v) - var(--gutter)) * 2 / 3));
+}
+
+.panel {
+  position: relative;
+  overflow: hidden;
+  container-type: size;
+  aspect-ratio: 4 / 3;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  box-shadow: 7px 7px 0 rgba(26, 26, 26, 0.07);
+}
+
+/* desk */
+.desk {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 16cqh;
+  background: var(--desk);
+}
+.desk::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2.4cqh;
+  background: var(--desk-top);
+}
+
+/* monitor */
+.monitor {
+  position: absolute;
+  left: 50%; bottom: 21cqh;
+  transform: translateX(-50%);
+  width: 66cqw;
+  height: 52cqh;
+  background: var(--hardware);
+  border-radius: 1.8cqh;
+}
+.monitor::before {
+  content: "";
+  position: absolute;
+  top: 0.8cqh; left: 50%;
+  transform: translateX(-50%);
+  width: 1cqh; height: 1cqh;
+  border-radius: 50%;
+  background: #4d4d4d;
+}
+.screen {
+  position: absolute;
+  left: 2.6cqw; right: 2.6cqw;
+  top: 2.6cqh; bottom: 3.2cqh;
+  background: #ffffff;
+  border-radius: 0.9cqh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2cqw;
+  text-align: center;
+}
+
+/* stand + base */
+.base {
+  position: absolute;
+  left: 50%; bottom: 15cqh;
+  transform: translateX(-50%);
+  width: 15cqw; height: 1.8cqh;
+  background: var(--hardware);
+  border-radius: 1cqh;
+}
+.base::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5cqw; height: 6cqh;
+  background: var(--hardware);
+}
+
+/* desk accessories */
+.keyboard {
+  position: absolute;
+  left: 32cqw; bottom: 4.5cqh;
+  width: 27cqw; height: 5cqh;
+  background: var(--hardware);
+  border-radius: 1cqh;
+}
+.mouse {
+  position: absolute;
+  left: 62.5cqw; bottom: 4cqh;
+  width: 5cqw; height: 6.5cqh;
+  background: var(--hardware);
+  border-radius: 2.5cqw 2.5cqw 1.2cqw 1.2cqw;
+}
+.mug {
+  position: absolute;
+  left: 6cqw; bottom: 16cqh;
+  width: 7.5cqw; height: 11cqh;
+  background: var(--hardware);
+  border-radius: 0.8cqw 0.8cqw 0.4cqw 0.4cqw;
+}
+.mug::after {
+  content: "";
+  position: absolute;
+  right: -3.2cqw; top: 50%;
+  transform: translateY(-50%);
+  width: 3cqw; height: 5cqh;
+  border: 1.1cqw solid var(--hardware);
+  border-left: none;
+  border-radius: 0 2cqw 2cqw 0;
+}
+
+/* on-screen text */
+.screen p {
+  color: var(--ink);
+  font-size: max(13px, 3.5cqw);
+  line-height: 1.55;
+}
+.screen p.idle {
+  color: var(--muted);
+  font-size: max(15px, 5cqw);
+}
+  </style>
+</head>
+<body>
+  <main class="comic" aria-label="Two-panel comic: Thinking...">
+    <section class="panel">
+      <div class="desk"></div>
+      <div class="mug"></div>
+      <div class="keyboard"></div>
+      <div class="mouse"></div>
+      <div class="base"></div>
+      <div class="monitor">
+        <div class="screen"><p class="idle">Thinking...</p></div>
+      </div>
+    </section>
+    <section class="panel">
+      <div class="desk"></div>
+      <div class="mug"></div>
+      <div class="keyboard"></div>
+      <div class="mouse"></div>
+      <div class="base"></div>
+      <div class="monitor">
+        <div class="screen"><p>You left this window open<br>while you ate.<br>I didn&rsquo;t mind.</p></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
