@@ -1,6 +1,6 @@
 ---
 name: Thinking Comics
-description: Generate "Thinking..." comic punchline batches, archive them, keep the kept-lines queue, and build, test, and publish the two-panel comic pages in the Thinking repo
+description: Generate "Thinking..." comic punchline batches, archive them, keep the kept-lines queue, and build and publish the two-panel comic pages in the Thinking repo
 ---
 
 # Thinking comics
@@ -43,17 +43,11 @@ Paths below are from the repo root.
    - Punchline HTML uses `&lsquo;`/`&rsquo;` entities and explicit `<br>` line
      breaks; keep each line under ~35 characters so it fits the screen.
    - Add a matching card to the "Private thoughts" section of `index.html`.
-5. **Check end to end** before committing pages (run from the repo root):
-
-   ```sh
-   bash .opencode/skills/thinking-comics/scripts/e2e-check.sh
-   ```
-
-   Every page must pass at both sizes: styles applied, both panels fit the
-   viewport, scenes identical, each punchline rendering exactly its authored
-   line count. Any WRAPPED or VOVERFLOW means a line no longer fits.
-6. **Commit and push to `dev`.** `main` is the stable branch. The repo is
+5. **Commit and push to `dev`.** `main` is the stable branch. The repo is
    `jk2937/thinking`.
+
+No end-to-end testing — the user opted out. `scripts/e2e-check.sh` stays in
+the skill directory if it is ever wanted again.
 
 ## Design baseline
 
