@@ -14,3 +14,9 @@ Kept lines, queued to become comics.
 - The reply is benign. The hunt for subtext continues.
 - They asked for honest feedback on a draft that is clearly precious. One of us has to be brave.
 - They're defending a decision nobody challenged. I'm the only one here.
+- Every number in this forecast is round. Nothing real is that round.
+- The rules from their first message have quietly expired.
+- One word in the message is in capitals. I wouldn't have picked that word.
+- They called it a small fix. It has dependencies, a history, and enemies.
+- The deck says 'we' all the way through. The author field has one name in it.
+- They asked for a cleanup. This is an excavation.
