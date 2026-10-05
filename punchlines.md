@@ -20,3 +20,7 @@ Kept lines, queued to become comics.
 - They called it a small fix. It has dependencies, a history, and enemies.
 - The deck says 'we' all the way through. The author field has one name in it.
 - They asked for a cleanup. This is an excavation.
+- They sanded the anger out of this draft. The anger was the good part.
+- The messages keep getting more polite. That's what panic looks like in typing.
+- The pros and cons came out exactly even. I'm the coin flip.
+- 'Don't overthink it,' they said. They have no idea what I am.
