@@ -30,3 +30,4 @@ Kept lines, queued to become comics.
 - Something crossed the keyboard in the middle of paragraph two. I suspect paws.
 - This exact apology is in my training data about four million times. I'm trying to write the one that isn't.
 - I've written the perfect sentence for this. It's going in the middle, disguised as a transition.
+- They hit the keys harder tonight. I hope the meeting went okay.

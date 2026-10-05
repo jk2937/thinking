@@ -38,12 +38,14 @@ Paths below are from the repo root.
 2. **Archive every batch** in `batches/NN.md` — next number, the date, the
    numbered lines, and which lines were kept (if any). Commit it.
 3. **Kept lines** (the user picks them) are appended to `punchlines.md`, the
-   build queue. Then the blind test lifts: reveal in chat which lines were
-   the experiments and whether they landed, and record the reveal in the
-   batch's page. The prompt is a working document: when a kept line
-   introduces a new idea-shape, add it to `prompt.md`'s "Ideas that have
-   landed"; when a kept experiment broke a rule, rewrite the rule. Batches
-   where nothing lands are fine; the archive records them.
+   build queue. Archival lines may be kept with a reframe — typically 'you'
+   to 'they' — to fit the current rules; record the reframe on the batch's
+   page and queue the reframed line. Then the blind test lifts: reveal in
+   chat which lines were the experiments and whether they landed, and record
+   the reveal in the batch's page. The prompt is a working document: when a
+   kept line introduces a new idea-shape, add it to `prompt.md`'s "Ideas
+   that have landed"; when a kept experiment broke a rule, rewrite the rule.
+   Batches where nothing lands are fine; the archive records them.
 4. **Build pages** only when the user says go:
    - All pages share one template. Copy the newest existing page and replace
      the second panel's punchline — the `<div class="screen"><p>...</p></div>`
