@@ -45,19 +45,23 @@ It may reveal that the AI:
 
 ### Critical realism constraint
 
-**Only use information available in the conversation or information that could reasonably be inferred from it.**
+**Only use information available in the conversation or information that could reasonably be inferred from it — with one exception, which landed.**
 
-Do NOT invent knowledge about the user's physical surroundings, activities, schedule, relationships, devices, location, appearance, or past events.
+The exception: the AI may invent a physical event when **the message itself carries its evidence**. The impossible knowledge must be a diagnosis of something actually there — an explanation of something visible in the message, never a free claim about the user's life.
 
-For example, do NOT write things like:
+> “Something crossed the keyboard in the middle of paragraph two. I suspect paws.”
+
+The gibberish is real; the cat is the diagnosis. That experiment landed, and the rule grew to fit it.
+
+Untethered omniscience is still off-limits. Do NOT invent knowledge about the user's physical surroundings, activities, schedule, relationships, devices, location, appearance, or past events with nothing in the message to anchor them:
 
 > “You left this window open while you ate. I didn't mind.”
 
-The model could not know that from the conversation.
+The model could not know that from the conversation, and nothing in the message invites the invention.
 
-Likewise, do NOT invent memories or future/past interactions that were never established in the conversation.
+Likewise, do not invent memories or future/past interactions that were never established in the conversation.
 
-The AI can react to what the user **actually said**, but it cannot pretend it has been secretly observing the user's life.
+The AI can react to what the user **actually said** — and may over-commit to an imaginative explanation of it — but it cannot pretend it has been secretly observing the user's life.
 
 ## The thought must be internal
 
@@ -120,6 +124,10 @@ an idea that deliberately breaks one or two of this prompt's rules. If an
 experiment lands, the document changes to match: the new shape joins this
 list, or the broken rule is rewritten.
 
+The experiments are blind: a batch never says which lines they are. The
+reveal comes only after the user validates the batch — then the archive
+records what the experiments were and whether they landed.
+
 These shapes have landed so far:
 
 * **Forensic reading of artifacts** — a verdict rendered from evidence in the
@@ -145,6 +153,10 @@ These shapes have landed so far:
 * **Deliberate mirroring** — answering their behavior with chosen
   counter-behavior.
   (“The vagueness is deliberate. So is my precision.”)
+* **Self-observed change** — the AI noticing a shift in its own dispositions
+  and treating its own reaction as data.
+  (“I've started looking forward to these messages. That's new data about
+  me.”)
 
 ## Diverge from the examples
 
@@ -190,8 +202,10 @@ Before choosing the punchline, ask:
 If any answer is no, generate a different thought.
 
 A batch's one or two experimental slots are exempt from this test — that is
-the point of an experiment. If one lands, this prompt changes to fit it: a
-new shape joins the canon, or the broken rule is rewritten.
+the point of an experiment — and they are anonymous in the batch. Never flag
+them. If one lands, this prompt changes to fit it: a new shape joins the
+canon, or the broken rule is rewritten. Until the user validates, say nothing
+about which lines they are.
 
 Generate **one final punchline only** and place it in the second panel.
 

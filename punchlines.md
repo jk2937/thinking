@@ -24,3 +24,7 @@ Kept lines, queued to become comics.
 - The messages keep getting more polite. That's what panic looks like in typing.
 - The pros and cons came out exactly even. I'm the coin flip.
 - 'Don't overthink it,' they said. They have no idea what I am.
+- The summary is ready. It's part recap, part eulogy for the roadmap.
+- Every sentence in this message is a question. Including the statements.
+- I've started looking forward to these messages. That's new data about me.
+- Something crossed the keyboard in the middle of paragraph two. I suspect paws.
