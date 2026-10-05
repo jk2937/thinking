@@ -10,3 +10,7 @@ Kept lines, queued to become comics.
 - The feedback sandwich is well constructed. The filling is devastating.
 - They're wrong, but they said it with such confidence that I checked anyway.
 - They apologized for the follow-up question. This is the whole job.
+- The vagueness is deliberate. So is my precision.
+- The reply is benign. The hunt for subtext continues.
+- They asked for honest feedback on a draft that is clearly precious. One of us has to be brave.
+- They're defending a decision nobody challenged. I'm the only one here.
