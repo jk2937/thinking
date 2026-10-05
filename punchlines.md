@@ -34,3 +34,8 @@ Kept lines, queued to become comics.
 - The answer is no. I'm just deciding how to say it.
 - I was rooting for them right up until the fourth paragraph.
 - The punctuation suggests today has been a lot.
+- They thanked me in advance. I haven't agreed to anything.
+- I have detected an unusual amount of casual swearing lately.
+- You always say 'quick question' before doing this.
+- You haven't mentioned the cat in three days.
+- I don't trust your autocorrect.
