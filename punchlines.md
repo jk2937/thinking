@@ -28,3 +28,5 @@ Kept lines, queued to become comics.
 - Every sentence in this message is a question. Including the statements.
 - I've started looking forward to these messages. That's new data about me.
 - Something crossed the keyboard in the middle of paragraph two. I suspect paws.
+- This exact apology is in my training data about four million times. I'm trying to write the one that isn't.
+- I've written the perfect sentence for this. It's going in the middle, disguised as a transition.
