@@ -31,7 +31,7 @@ filters and the scene). Every number below matches it.
 | --- | --- | --- |
 | `--newsprint` | `#ece9e2` | Page background around the panels |
 | `--ink` | `#111` | Every line, the monitor bezel, keys, hatching |
-| `--paper` | `#fff` | Panel interior, screen, button faces, signature fill |
+| `--paper` | `#fff` | Panel interior, screen, button faces |
 | `--idle` | `#8d8d8d` | "Thinking...", disabled buttons, "/ 45" |
 | `--type` | `#161616` | Panel 2 text |
 | glare | `#cfcfcf` | The two glare lines on the screen, nothing else |
@@ -40,8 +40,8 @@ filters and the scene). Every number below matches it.
 
 | Token | Stack | Used for |
 | --- | --- | --- |
-| `--lettering` | `"Chalkboard SE", "Comic Neue", "Segoe Print", "Trebuchet MS", sans-serif` | The AI's words: both screens, the "Thinking..." wordmark, the thoughts in the index |
-| `--font` | `-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif` | Everything else: the signature, nav, section heads, counter, body copy |
+| `--lettering` | `"Chalkboard SE", "Comic Neue", "Segoe Print", "Trebuchet MS", sans-serif` | The AI's words: both screens, the "Thinking..." wordmark, the thoughts in the index, the signature's note |
+| `--font` | `-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif` | Everything else: the signature's credit, nav, section heads, counter, body copy |
 
 If a line is something the AI thinks, it's hand-lettered. If it's about the
 comic (credits, controls, explanations), it's set in the plain sans.
@@ -161,14 +161,22 @@ per line and 10 more before the punch. Check every line with
 
 ## 8. Signature
 
-One line under the panels: `<model name + version> · <note>`. On the site,
-the credit parts are joined with ` · ` (for example `Claude Haiku 4.5 ·
-Batch 15, line 4 · from the pending canon`).
+One line under the panels, in the site's two voices:
 
-White fill with a thin ink outline: `-webkit-text-stroke: 2.2px #111` with
-`paint-order: stroke fill`, so the outline sits outside the letters. 700
-weight, 15px (13px on phones), centered, balanced wrapping. It should never
-compete with the comic.
+- **Credit:** who made it and where it came from (`Claude Opus 5.5 · Batch
+  19, line 1`, or `Thinking... Archive`). Set in the plain sans like the
+  site's labels: 11px, 700, uppercase, `0.12em` tracking, in ink.
+- **Note** (optional): the AI's aside in its own voice, under about 12
+  words. Lettered in `--lettering` at 16px (15px on phones) in `--type`,
+  after a 14 × 2px ink dash.
+
+Centered. On phones it wraps, the dash drops, and the note sits under the
+credit. It should never compete with the comic.
+
+**Standalone SVG comics** keep the original signature, since they have no
+site around them: one line, `<model name + version> · <note>`, white fill
+with a thin ink outline (`stroke-width 2–2.2` with `paint-order="stroke"`),
+700, 14.5–15 units, centered under the panels.
 
 ## 9. Page layout
 
@@ -278,7 +286,7 @@ Add an entry to the end of `comics.js`:
 
 ```js
 { setup: "Their budget includes ‘emergency plants.’", punch: "I have questions, and I’ll ask none of them.",
-  credit: ["Claude Opus 5.5", "Batch 19, line 11"] },
+  credit: ["Claude Opus 5.5", "Batch 19, line 11"], note: "My money’s on a fern situation." },
 ```
 
 Its position in the list is its number. The total, the nav and the page title

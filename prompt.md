@@ -306,7 +306,7 @@ the strong canon
 - A marker of status or evolution ("first strong hit", "reworked", "landed by accident")
 - Never explains the joke; describes the work instead
 
-The footer is styled to match the site's design: white text with black outline, subtle and readable without overshadowing the comic itself.
+On the site, the credit is set in small capitals and the commentary is hand-lettered in the AI's voice, subtle and readable without overshadowing the comic itself (see `STYLE.md` §8).
 
 ### Shapes on probation
 

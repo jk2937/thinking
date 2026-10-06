@@ -10,6 +10,8 @@
   const thought = document.querySelector('.thought');
   const wipe = document.querySelector('.wipe');
   const signature = document.querySelector('.signature');
+  const signatureCredit = signature.querySelector('.signature-credit');
+  const signatureNote = signature.querySelector('.signature-note');
   const count = document.querySelector('.count');
   const countNow = document.querySelector('.count-now');
   const buttons = {};
@@ -64,7 +66,9 @@
     thought.append(punch);
     fit();
 
-    signature.textContent = comic.credit.join(' · ');
+    signatureCredit.textContent = comic.credit.join(' · ');
+    signatureNote.textContent = comic.note || '';
+    signatureNote.hidden = !comic.note;
     setLink(buttons.first, n > 1 && 1);
     setLink(buttons.prev, n > 1 && n - 1);
     setLink(buttons.next, n < total && n + 1);
