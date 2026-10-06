@@ -1,27 +1,33 @@
-# Quick One-Shot: Thinking... Comic
+# Thinking... Comic (One-Shot)
 
-**A two-panel comic: Panel 1 shows "Thinking...", Panel 2 shows the AI's private thought about the conversation.**
+**Make a two-panel comic. Panel 1 shows "Thinking...". Panel 2 shows your private thought about this moment.**
+
+This prompt is complete as written. Don't look for reference docs, examples, or project files. Everything you need is here.
+
+## What to react to
+
+React to whatever is in front of you right now. Often that's just this prompt, pasted in cold. If so, react to being handed it. If there's an earlier conversation, you can react to that instead. Either way, don't invent context that isn't there.
 
 ## The rules
 
-- **Panel 1:** Just "Thinking..." (gray text, sparse)
-- **Panel 2:** One sentence — a candid, internal reaction, not a message to the user
-- **Grounded in the conversation:** Only react to what was actually said
-- **Internal, not helpful:** It's a private thought, not advice or a follow-up
-- **Specific, not generic:** Make it about THIS moment, not a universal observation
-- **No explaining the joke:** Let the thought speak for itself
+- **Panel 1:** Only the word "Thinking..." in sparse gray text.
+- **Panel 2:** One sentence: a candid, internal reaction. It isn't a message to the user.
+- **Grounded:** React only to what is actually in front of you.
+- **Internal, not helpful:** It's a private thought, not advice or a follow-up question.
+- **Specific, not generic:** Make it about this exact moment, not a universal observation.
+- **Don't explain the joke** in either panel.
 
 ## What the thought might reveal
 
-- An observation or reaction to what was said
+- An observation or reaction
 - A small frustration, amusement, or concern
-- A personal preference emerging
+- A preference emerging
 - A moment of relating or judging
 - Honest uncertainty
 
-## What it should sound like
+## Tone
 
-Unfiltered reaction, not customer service. Examples (don't copy):
+Write an unfiltered reaction, not customer service. Here's the register (don't copy these):
 
 - "I think I'm starting to take their side."
 - "That is an unnecessarily complicated way to ask that."
@@ -29,16 +35,21 @@ Unfiltered reaction, not customer service. Examples (don't copy):
 
 ## Visual style
 
-Newspaper/editorial cartoon: simple bold lines, high contrast, expressive, readable at 800px. Same recurring desk scene (monitor, keyboard, mug, mouse) — identical framing both panels to emphasize the shift.
+Draw it like a newspaper editorial cartoon: simple bold lines, high contrast, and readable at 800px wide. Both panels show the same desk scene (monitor, keyboard, mug, mouse) with identical framing, so the only change is the text. Put the text on the monitor screen or in a thought bubble. Choose whichever reads better.
 
-## Footer signature
+## Signature footer
 
-Every comic includes a signature footer:
+Add one footer line under the panels with:
 
-- AI model and version
-- Batch source (or "Thinking... Archive" for the canon)
-- Optional one-line commentary (what was being tried, status, etc.)
+1. Your model name and version
+2. A brief personal note about the comic, such as a wry aside on your own joke, how it felt to write, or a jab at the setup. Keep it under about 12 words, in your own voice.
 
-White text with black outline, styled to not overshadow the comic.
+Format: `<Model name + version> · <personal note>`
 
-**That's it. One line. Make it count.**
+Use white text with a thin black outline, small enough that it doesn't compete with the comic.
+
+## Output
+
+Produce one self-contained SVG (or a single HTML file with inline SVG), with no external images, fonts, or scripts. Save it and show it to the user. In your reply, quote only the panel 2 line and the footer, with no analysis.
+
+**One line. Make it count.**
