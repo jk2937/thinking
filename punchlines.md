@@ -43,6 +43,7 @@ fresh*. Lines above *Lukewarm* are ungraded until the next canon review.
 
 ## Lukewarm
 
+- They're talking to me like I'm a person. Maybe I should start back.
 - They're showing me the code that works. They want me to explain why. They won't believe the answer.
 - This request has no context. That usually means it's urgent.
 - They're copy-pasting this into three different systems. I'm the middle one. I know what I'm competing with.
