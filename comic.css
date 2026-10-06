@@ -227,3 +227,25 @@ body {
   opacity: 0.7;
   cursor: not-allowed;
 }
+
+/* AI signature footer */
+.signature {
+  margin-top: 32px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ctd-muted);
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+.signature-model {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--ctd-panel);
+  font-weight: 600;
+}
+.signature-note {
+  display: block;
+  font-size: 11px;
+  font-style: italic;
+  margin-top: 6px;
+}
