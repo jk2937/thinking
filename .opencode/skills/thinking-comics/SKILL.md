@@ -46,14 +46,14 @@ Paths below are from the repo root.
    kept line introduces a new idea-shape, add it to `prompt.md`'s "Ideas
    that have landed"; when a kept experiment broke a rule, rewrite the rule.
    Batches where nothing lands are fine; the archive records them.
-4. **Build pages** only when the user says go:
-   - All pages share one template. Copy the newest existing page and replace
-     the second panel's punchline — the `<div class="screen"><p>...</p></div>`
-     that is not `<p class="idle">`.
-   - Name it `thoughts/NN-kebab-slug.html`, next number.
-   - Punchline HTML uses `&lsquo;`/`&rsquo;` entities and explicit `<br>` line
-     breaks; keep each line under ~35 characters so it fits the screen.
-   - Add a matching card to the "Private thoughts" section of `index.html`.
+4. **Build comics** only when the user says go:
+   - The site is one page, `index.html`. Every comic is an entry in
+     `comics.js`; its position is its number (`index.html#12`).
+   - Append `{ setup, punch, credit }`: the setup in regular weight, the
+     punch (the last sentence) in bold, and the signature parts. Use
+     typographic quotes (`‘ ’ “ ”`). No line breaks; the page wraps and
+     fits the text itself.
+   - Check it at desktop and phone widths. See `STYLE.md` §13.
 5. **Commit and push to `dev`.** `main` is the stable branch. The repo is
    `jk2937/thinking`.
 
@@ -62,24 +62,21 @@ the skill directory if it is ever wanted again.
 
 ## Design baseline
 
-The original paper-and-ink style:
+Ink & Newsprint, specified in full in `STYLE.md`: bold black ink on white
+panels, a newsprint `#ece9e2` page, hatching for every shadow, a hand-inked
+SVG scene shared by both panels, and stepped, hand-drawn motion.
 
-- Page: warm paper `#f2f0ec`; panels `#fdfdfc` with a 3px `#1a1a1a` border and
-  a flat offset shadow; Helvetica stack; both panels fit the viewport
-  (`width: min(100%, (100dvh - 2 * margins - gutter) * 2 / 3)`).
-- Scene: desk `#eae6de` with a `#dcd6ca` surface strip; monitor `#262626` with
-  a white screen; mug, keyboard, mouse, stand in the same dark. Everything is
-  sized in container query units (`cqw`/`cqh`) so it scales with the panel.
-- Text: punchline `#1a1a1a` at `max(13px, 3.5cqw)`; "Thinking..." `#9a9a9a`
-  at `max(15px, 4.5cqw)`.
-
-The crash-test-dummy-web kit restyle lives in the dev history (commit
-268bc7b) if it is ever wanted again.
+Earlier looks live in the dev history if they are ever wanted again: the
+crash-test-dummy-web kit restyle (commit 268bc7b, through `comic.css` at
+d2dc84e) and the original paper-and-ink style (before 268bc7b).
 
 ## Repo layout
 
-- `index.html` — the gallery; a card per comic
-- `thinking.html` — the first comic
+- `index.html` — the site: one comic at a time with nav; `#N` picks the comic
+- `comics.js` — every comic's text and signature · `comic.js` — the nav
+- `comic.css` — the theme · `STYLE.md` — the style spec
+- `pages/` — redirects from the old per-comic URLs
+- `thinking.html` — the first comic, from the older series
 - `prompt.md` — the punchline prompt · `punchlines.md` — the kept lines
 - `batches/` — every generated batch, archived
 - `thoughts/` — private-thought comics · `originals/`, `examples/` — the

@@ -1,252 +1,293 @@
-/* Shared template for the "Thinking..." two-panel comic.
-   Styled after the Be a Crash Test Dummy web UI kit (crash-test-dummy-web):
-   sky backdrop, Fredoka, and "surfaces" — a dark outline, a ring of the
-   surface's own colour, then the fill with its shine. */
-
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap');
+/* "Thinking..." — ink and newsprint.
+   Bold black ink on white panels, a warm newsprint page, hatching for every
+   shadow, and motion that moves on threes like hand-drawn animation.
+   The full spec, with the numbers behind each choice, is STYLE.md. */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* The kit's palette (src/theme/colors.ts). */
-  --ctd-panel: #16161a;
-  --ctd-surface: #1c1c20;
-  --ctd-text: #f0eee8;
-  --ctd-muted: #96948e;
-  --ctd-sky: #8fcdf2;
-  --ctd-paper: #d9c9b0;
-  --ctd-gold: #ffcc40;
-  --ctd-live: #78d68c;
-  --ctd-info: #70b0e8;
-  --ctd-facility: #56cebe;
-  --ctd-setup: #f29248;
-  --ctd-dialog-ring: #5d5d63;
-  --ctd-dialog-fill: #2c2c31;
+  --newsprint: #ece9e2;
+  --ink: #111;
+  --paper: #fff;
+  --idle: #8d8d8d;
+  --type: #161616;
+  --font: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  --shine: linear-gradient(to top, rgb(255 255 255 / 0.3), rgb(255 255 255 / 0) 55%, rgb(0 0 0 / 0.1));
+  /* The SVG hatch patterns, as CSS: "/" lines, heavy and light. */
+  --hatch: repeating-linear-gradient(135deg, var(--ink) 0 1.8px, transparent 1.8px 6px);
+  --hatch-light: repeating-linear-gradient(135deg, var(--ink) 0 1px, transparent 1px 7px);
 
-  --margin-v: clamp(24px, 5vh, 64px);
-  --margin-h: clamp(16px, 5vw, 96px);
-  --gutter: clamp(16px, 2vw, 28px);
+  --gutter: clamp(12px, 2.6vw, 22px);
+  /* Height kept clear of the comic for page padding, signature and nav. */
+  --chrome: 200px;
+  /* Hand-drawn timing: few frames, no easing. */
+  --on-twos: steps(2, end);
+  --on-fours: steps(4, end);
 }
+
+html { background: var(--newsprint); }
 
 body {
   min-height: 100vh;
   min-height: 100dvh;
-  background: var(--ctd-sky);
-  color: var(--ctd-panel);
-  font-family: 'Fredoka', system-ui, sans-serif;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 4vh, 40px) 16px;
+  background: var(--newsprint);
+  color: var(--ink);
+  font-family: var(--font);
+}
+
+/* Holds the shared patterns, filters and scene. Not display:none, which
+   would stop the patterns and filters from painting. */
+.ink-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+.page {
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
-  justify-content: center;
-  padding: var(--margin-v) var(--margin-h);
+  gap: clamp(18px, 3vh, 28px);
+  width: 100%;
 }
+
+/* ---------- The comic ---------- */
 
 .comic {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--gutter);
-  min-width: min(100%, 280px);
-  /* Sized so both 4:3 panels fit the viewport at once:
-     available height = 2 panels + gutter, and panel width = height * 4/3 */
-  width: min(100%, calc((100vh - 2 * var(--margin-v) - var(--gutter) - 64px) * 2 / 3));
-  width: min(100%, calc((100dvh - 2 * var(--margin-v) - var(--gutter) - 64px) * 2 / 3));
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--gutter);
+  row-gap: 14px;
+  /* Both 370 × 420 panels fit the viewport height at once. */
+  width: min(100%, 980px, max(560px, calc((100vh - var(--chrome)) * 370 / 420 * 2 + var(--gutter))));
+  width: min(100%, 980px, max(560px, calc((100dvh - var(--chrome)) * 370 / 420 * 2 + var(--gutter))));
 }
 
-/* The panel: a kit surface in off-white paper. */
 .panel {
-  --edge: max(4px, 1.1cqw);
   position: relative;
-  overflow: hidden;
-  container-type: size;
-  aspect-ratio: 4 / 3;
-  border: 6px solid var(--ctd-panel);
-  border-radius: 22px;
-  background: var(--shine), var(--ctd-paper);
-  box-shadow: inset 0 0 0 6px #e8dcc8;
+  container-type: inline-size;
+  aspect-ratio: 370 / 420;
 }
+.panel-art { display: block; width: 100%; height: 100%; }
+.panel-border { fill: none; stroke: var(--ink); stroke-width: 5; }
 
-/* desk */
-.desk {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 16cqh;
-  background: var(--shine), var(--ctd-setup);
-  border-top: var(--edge) solid var(--ctd-panel);
-}
-
-/* The computer: a chunky outlined monitor with a blue ring bezel, a chin
-   with a power light, and a webcam. */
-.monitor {
-  position: absolute;
-  left: 50%; bottom: 23cqh;
-  transform: translateX(-50%);
-  width: 64cqw;
-  height: 52cqh;
-  border: var(--edge) solid var(--ctd-panel);
-  border-radius: 3.6cqh;
-  background: var(--shine), var(--ctd-info);
-  box-shadow: inset 0 0 0 var(--edge) #8fc2ef, 1.2cqw 1.6cqh 0 rgb(0 0 0 / 0.18);
-}
-/* webcam */
-.monitor::before {
-  content: "";
-  position: absolute;
-  top: 1cqh; left: 50%;
-  transform: translateX(-50%);
-  width: 1.6cqh; height: 1.6cqh;
-  border-radius: 50%;
-  background: var(--ctd-panel);
-  box-shadow: inset 0.3cqh 0.3cqh 0 #4a5a70;
-}
-/* power light on the chin */
-.monitor::after {
-  content: "";
-  position: absolute;
-  bottom: 1.3cqh; right: 3.5cqw;
-  width: 1.8cqh; height: 1.8cqh;
-  border-radius: 50%;
-  background: var(--ctd-live);
-  border: 0.4cqh solid var(--ctd-panel);
-  box-shadow: 0 0 1.4cqh var(--ctd-live);
-}
+/* The monitor screen sits at x 52–318, y 40–222 of the 370 × 420 panel.
+   All type is in cqw so it scales with the panel: 20 / 370 = 5.4cqw. */
 .screen {
   position: absolute;
-  left: 3cqw; right: 3cqw;
-  top: 3.6cqh; bottom: 5.4cqh;
-  border: max(3px, 0.7cqw) solid var(--ctd-panel);
-  border-radius: 1.8cqh;
-  background:
-    linear-gradient(155deg, rgb(255 255 255 / 0.07) 0 38%, transparent 38%),
-    var(--ctd-dialog-fill);
-  box-shadow: inset 0 0 0 max(2px, 0.5cqw) var(--ctd-dialog-ring);
+  left: 14.054%;
+  top: 9.524%;
+  width: 71.892%;
+  height: 43.333%;
+  display: grid;
+  place-items: center;
+  padding: 0 2.7cqw;
+  border-radius: 1.1cqw;
+  overflow: hidden;
+  text-align: center;
+}
+
+.idle {
+  color: var(--idle);
+  font-size: 6.49cqw;
+  letter-spacing: 0.05em;
+}
+
+.thought {
+  --fit: 1;
+  color: var(--type);
+  font-size: calc(5.4cqw * var(--fit));
+  line-height: 1.3;
+  text-wrap: balance;
+}
+.thought .setup { display: block; font-weight: 400; }
+.thought .punch { display: block; font-weight: 700; }
+.thought .setup + .punch { margin-top: 0.5em; }
+
+/* Hatch that sweeps across the screen between comics. */
+.wipe {
+  position: absolute;
+  inset: 0;
+  background: var(--hatch), var(--paper);
+  clip-path: inset(0 100% 0 0);
+  pointer-events: none;
+}
+
+/* Signature: white letters, thin black outline, small. */
+.signature {
+  grid-column: 1 / -1;
+  justify-self: center;
+  color: var(--paper);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-wrap: balance;
+  -webkit-text-stroke: 2.2px var(--ink);
+  paint-order: stroke fill;
+}
+
+/* ---------- Navigation ---------- */
+
+.nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 2.4cqw;
-  text-align: center;
+  gap: 12px;
+  padding-bottom: 5px; /* room for the cast shadows */
 }
 
-/* stand + base */
-.base {
-  position: absolute;
-  left: 50%; bottom: 14cqh;
-  transform: translateX(-50%);
-  width: 20cqw; height: 4cqh;
-  border: var(--edge) solid var(--ctd-panel);
-  border-radius: 3cqh 3cqh 1cqh 1cqh;
-  background: var(--shine), var(--ctd-info);
-}
-.base::before {
-  content: "";
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 6cqw; height: 6.5cqh;
-  border: var(--edge) solid var(--ctd-panel);
-  border-bottom: none;
-  background: #5b9ad6;
-}
-
-/* desk accessories */
-.keyboard {
-  position: absolute;
-  left: 30cqw; bottom: 4cqh;
-  width: 30cqw; height: 6cqh;
-  border: var(--edge) solid var(--ctd-panel);
-  border-radius: 1.4cqh;
-  background:
-    radial-gradient(circle, var(--ctd-panel) 32%, transparent 36%) 0 0 / 2.4cqw 2.4cqh,
-    var(--ctd-text);
-}
-.mouse {
-  position: absolute;
-  left: 63cqw; bottom: 4cqh;
-  width: 5.5cqw; height: 7.5cqh;
-  border: var(--edge) solid var(--ctd-panel);
-  border-radius: 3cqw 3cqw 1.6cqw 1.6cqw;
-  background: var(--shine), var(--ctd-text);
-}
-.mug {
-  position: absolute;
-  left: 6cqw; bottom: 16cqh;
-  width: 8cqw; height: 11cqh;
-  border: var(--edge) solid var(--ctd-panel);
-  border-radius: 0.8cqw 0.8cqw 1.4cqw 1.4cqw;
-  background: var(--shine), var(--ctd-facility);
-}
-.mug::after {
-  content: "";
-  position: absolute;
-  right: -4.2cqw; top: 50%;
-  transform: translateY(-50%);
-  width: 3.6cqw; height: 5.4cqh;
-  border: var(--edge) solid var(--ctd-panel);
-  border-left: none;
-  border-radius: 0 2cqw 2cqw 0;
-}
-
-/* on-screen text */
-.screen p {
-  color: var(--ctd-text);
-  font-weight: 500;
-  font-size: max(13px, 3.4cqw);
-  line-height: 1.45;
-}
-.screen p.idle {
-  color: var(--ctd-muted);
-  font-weight: 700;
-  font-size: max(15px, 5cqw);
-}
-
-/* Navigation: small kit tiles with stroked uppercase labels. */
-.navigation { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-.navigation a, .navigation span {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-height: 48px; padding: 8px 16px;
-  border: 4px solid var(--ctd-panel);
-  border-radius: 14px;
-  background: var(--shine), var(--ctd-gold);
-  box-shadow: inset 0 0 0 4px #ffd866;
-  color: #fff;
-  font: 700 15px/1 'Fredoka', system-ui, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+.btn {
+  position: relative;
+  display: block;
+  color: var(--ink);
   text-decoration: none;
-  -webkit-text-stroke: 3px var(--ctd-panel);
-  paint-order: stroke fill;
-}
-.navigation a:hover { filter: brightness(1.08); transform: translateY(-1px); }
-.navigation a:focus-visible { outline: 3px solid var(--ctd-text); outline-offset: 3px; }
-.navigation span {
-  background: var(--shine), #55555b;
-  box-shadow: inset 0 0 0 4px #6a6a70;
-  opacity: 0.7;
-  cursor: not-allowed;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* AI signature footer */
-.signature {
-  margin-top: 32px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #ffffff;
-  text-align: center;
-  letter-spacing: 0.03em;
-  -webkit-text-stroke: 2px var(--ctd-panel);
+/* Hatched cast shadow, offset down-right like the monitor's on the wall. */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  translate: 5px 5px;
+  background: var(--hatch-light);
+}
+
+.btn-face {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 0 16px;
+  overflow: hidden;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: translate 120ms var(--on-twos);
+}
+
+/* Hatching that sweeps across the face, toward where the button goes. */
+.btn-face::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--hatch-light);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 200ms var(--on-fours);
+}
+.btn[data-go="first"] .btn-face::before,
+.btn[data-go="prev"] .btn-face::before { clip-path: inset(0 0 0 100%); }
+
+.btn-label,
+.icon { position: relative; }
+
+/* A paper halo keeps the label clear of the hatching. */
+.btn-label {
+  -webkit-text-stroke: 4px var(--paper);
   paint-order: stroke fill;
 }
-.signature-model {
-  display: block;
-  margin-bottom: 4px;
-  font-weight: 600;
+
+.icon {
+  width: 18px;
+  height: 14px;
+  flex: none;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: translate 120ms var(--on-twos);
 }
-.signature-note {
-  display: block;
-  font-size: 11px;
-  font-style: italic;
-  margin-top: 6px;
+.icon g { filter: url(#boil-1); }
+
+@media (hover: hover) {
+  .btn:hover .btn-face { translate: -2px -2px; }
+  .btn:hover .btn-face::before { clip-path: inset(0 0 0 0); }
+  .btn:hover .icon g { animation: boil 360ms steps(1, end) infinite; }
+  .btn[data-go="next"]:hover .icon,
+  .btn[data-go="last"]:hover .icon { translate: 3px 0; }
+  .btn[data-go="prev"]:hover .icon,
+  .btn[data-go="first"]:hover .icon { translate: -3px 0; }
+}
+
+.btn:focus-visible { outline: none; }
+.btn:focus-visible .btn-face { translate: -2px -2px; }
+.btn:focus-visible .btn-face::before { clip-path: inset(0 0 0 0); }
+/* A dashed cut-here line, like a newspaper coupon. */
+.btn:focus-visible::after {
+  content: "";
+  position: absolute;
+  inset: -8px -10px -10px -8px;
+  border: 2px dashed var(--ink);
+  pointer-events: none;
+}
+
+/* Press: the face stamps down onto its shadow. */
+.btn:active .btn-face { translate: 5px 5px; transition-duration: 40ms; }
+
+/* Disabled: idle gray, flat, no shadow. */
+.btn[aria-disabled="true"] {
+  color: var(--idle);
+  cursor: default;
+  pointer-events: none;
+}
+.btn[aria-disabled="true"]::before { display: none; }
+.btn[aria-disabled="true"] .btn-face { border-color: var(--idle); }
+
+@keyframes boil {
+  0%      { filter: url(#boil-1); }
+  33.333% { filter: url(#boil-2); }
+  66.667% { filter: url(#boil-3); }
+}
+
+.count {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.3em;
+  min-width: 5.5em;
+  font-size: 15px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+}
+.count-now { display: inline-block; }
+.count-of,
+.count-total { color: var(--idle); }
+
+/* ---------- Small screens: stack the panels, icon-only nav ---------- */
+
+@media (max-width: 720px) {
+  .btn[data-go="first"] .btn-label,
+  .btn[data-go="last"] .btn-label { display: none; }
+  .btn[data-go="first"] .btn-face,
+  .btn[data-go="last"] .btn-face { min-width: 48px; padding: 0 12px; }
+}
+
+@media (max-width: 640px) {
+  .comic { grid-template-columns: 1fr; width: min(100%, 440px); }
+}
+
+@media (max-width: 520px) {
+  .nav { gap: 10px; }
+  .btn-label { display: none; }
+  .btn-face { min-width: 48px; padding: 0 12px; }
+  .count { min-width: 4.5em; }
+  .signature { font-size: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

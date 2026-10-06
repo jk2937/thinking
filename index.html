@@ -3,35 +3,176 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Thinking... — 1 of 45</title>
+  <title>Thinking... — 1 of 57</title>
+  <meta name="description" content="Two-panel comics in which an AI's private thought briefly becomes visible.">
   <link rel="stylesheet" href="comic.css">
+  <script src="comics.js" defer></script>
+  <script src="comic.js" defer></script>
 </head>
 <body>
-  <main class="comic" aria-label="Thinking... comic 1 of 45">
-    <section class="panel">
-      <div class="desk"></div>
-      <div class="mug"></div>
-      <div class="keyboard"></div>
-      <div class="mouse"></div>
-      <div class="base"></div>
-      <div class="monitor">
+  <!-- Shared ink: hatching, the hand-inked wobble, the line boil, and the desk
+       scene itself. Both panels <use> the same scene, so only the text changes.
+       See STYLE.md for the spec. -->
+  <svg class="ink-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <line x1="0" y1="0" x2="0" y2="6" stroke="#111" stroke-width="1.8"/>
+      </pattern>
+      <pattern id="hatch-light" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <line x1="0" y1="0" x2="0" y2="7" stroke="#111" stroke-width="1"/>
+      </pattern>
+
+      <filter id="ink" x="-3%" y="-3%" width="106%" height="106%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="11" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+
+      <!-- Line boil: three wobbles cycled on hover, like a hand-drawn loop -->
+      <filter id="boil-1" filterUnits="userSpaceOnUse" x="-4" y="-4" width="26" height="22">
+        <feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="1" seed="2" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.4" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+      <filter id="boil-2" filterUnits="userSpaceOnUse" x="-4" y="-4" width="26" height="22">
+        <feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="1" seed="5" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.4" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+      <filter id="boil-3" filterUnits="userSpaceOnUse" x="-4" y="-4" width="26" height="22">
+        <feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="1" seed="9" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.4" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+
+      <symbol id="scene" viewBox="0 0 370 420">
+        <g filter="url(#ink)" stroke-linejoin="round" stroke-linecap="round">
+          <!-- wall, and the monitor's cast shadow on it -->
+          <rect x="-4" y="-4" width="378" height="288" fill="#fff"/>
+          <path d="M326 46 L346 46 L346 258 L58 258 L58 238 L326 238 Z" fill="url(#hatch-light)"/>
+
+          <!-- desk top, a little grain, and the hatched front face -->
+          <rect x="-4" y="282" width="378" height="104" fill="#fff"/>
+          <line x1="-4" y1="282" x2="374" y2="282" stroke="#111" stroke-width="3"/>
+          <g stroke="#111" stroke-width="1.4" fill="none">
+            <path d="M250 292 L300 292"/>
+            <path d="M312 374 L352 374"/>
+            <path d="M8 300 L22 300"/>
+            <path d="M120 379 L150 379"/>
+          </g>
+          <rect x="-4" y="385" width="378" height="40" fill="url(#hatch)"/>
+          <line x1="-4" y1="385" x2="374" y2="385" stroke="#111" stroke-width="4.5"/>
+
+          <!-- mouse cord, tucked behind the monitor base -->
+          <path d="M318 325 C314 306 292 312 264 303 S238 297 226 297" fill="none" stroke="#111" stroke-width="2.4"/>
+
+          <!-- monitor stand -->
+          <ellipse cx="190" cy="303" rx="54" ry="7" fill="url(#hatch-light)"/>
+          <ellipse cx="185" cy="298" rx="52" ry="9" fill="#fff" stroke="#111" stroke-width="3.5"/>
+          <path d="M172 236 L168 297 L202 297 L198 236 Z" fill="#fff"/>
+          <path d="M172 236 L168 296 M198 236 L202 296" stroke="#111" stroke-width="3.5" fill="none"/>
+
+          <!-- monitor: black bezel, white screen, power light, glare -->
+          <rect x="40" y="28" width="290" height="212" rx="12" fill="#111"/>
+          <rect x="52" y="40" width="266" height="182" rx="4" fill="#fff"/>
+          <circle cx="185" cy="231" r="2.6" fill="#fff"/>
+          <g stroke="#cfcfcf" stroke-width="2.2">
+            <line x1="286" y1="48" x2="310" y2="72"/>
+            <line x1="298" y1="47" x2="311" y2="60"/>
+          </g>
+
+          <!-- keyboard -->
+          <polygon points="82,366 294,366 302,374 90,374" fill="url(#hatch-light)"/>
+          <polygon points="78,358 292,358 292,366 78,366" fill="#111"/>
+          <polygon points="98,318 272,318 292,358 78,358" fill="#fff" stroke="#111" stroke-width="3.5"/>
+          <g stroke="#111" stroke-width="5.5" stroke-linecap="butt" fill="none">
+            <line x1="104" y1="325" x2="267" y2="325" stroke-dasharray="10.5 3.5"/>
+            <line x1="99" y1="334" x2="272" y2="334" stroke-dasharray="11 3.6"/>
+            <line x1="94" y1="343" x2="277" y2="343" stroke-dasharray="11.5 3.7"/>
+            <line x1="90" y1="352" x2="114" y2="352"/>
+            <line x1="119" y1="352" x2="252" y2="352"/>
+            <line x1="257" y1="352" x2="281" y2="352"/>
+          </g>
+
+          <!-- mug, with steam that boils on threes -->
+          <ellipse cx="46" cy="364" rx="23" ry="4" fill="url(#hatch-light)"/>
+          <path d="M61 330 C78 330 78 354 60 353" fill="none" stroke="#111" stroke-width="4.5"/>
+          <path d="M24 322 L26.5 359 Q43 367 59.5 359 L62 322 Z" fill="#fff" stroke="#111" stroke-width="3.5"/>
+          <path d="M25 336 L61 336 L60.4 346 L25.6 346 Z" fill="url(#hatch)"/>
+          <ellipse cx="43" cy="322" rx="19" ry="5" fill="#fff" stroke="#111" stroke-width="3.5"/>
+          <ellipse cx="43" cy="322.6" rx="14" ry="2.8" fill="#111"/>
+          <g fill="none" stroke="#111" stroke-width="2.4">
+            <path d="M37 312 C31 304 43 298 37 290 C31 282 41 278 38 272">
+              <animate class="steam" attributeName="d" dur="1.2s" calcMode="discrete" repeatCount="indefinite"
+                values="M37 312 C31 304 43 298 37 290 C31 282 41 278 38 272;
+                        M37 312 C43 304 31 298 37 290 C43 282 33 278 36 272;
+                        M38 312 C33 305 42 298 38 291 C33 283 42 279 39 273"/>
+            </path>
+            <path d="M50 313 C44 305 56 300 50 292 C45 285 53 281 51 277">
+              <animate class="steam" attributeName="d" dur="1.2s" begin="-0.4s" calcMode="discrete" repeatCount="indefinite"
+                values="M50 313 C44 305 56 300 50 292 C45 285 53 281 51 277;
+                        M50 313 C56 305 44 300 50 292 C55 285 47 281 49 277;
+                        M51 313 C46 305 55 300 51 292 C46 285 54 281 52 278"/>
+            </path>
+          </g>
+
+          <!-- mouse -->
+          <ellipse cx="327" cy="366" rx="15" ry="3.5" fill="url(#hatch-light)"/>
+          <g transform="rotate(-12 322 345)">
+            <ellipse cx="322" cy="345" rx="15" ry="21" fill="#fff" stroke="#111" stroke-width="3.5"/>
+            <line x1="322" y1="325" x2="322" y2="339" stroke="#111" stroke-width="2.4"/>
+            <rect x="319.6" y="328" width="4.8" height="8" rx="2.4" fill="#111"/>
+          </g>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <main class="page">
+    <figure class="comic" aria-label="Thinking... comic 1 of 57">
+      <div class="panel">
+        <svg class="panel-art" viewBox="0 0 370 420" aria-hidden="true" focusable="false">
+          <use href="#scene"/>
+          <rect class="panel-border" x="2.5" y="2.5" width="365" height="415"/>
+        </svg>
         <div class="screen"><p class="idle">Thinking...</p></div>
       </div>
-    </section>
-    <section class="panel">
-      <div class="desk"></div>
-      <div class="mug"></div>
-      <div class="keyboard"></div>
-      <div class="mouse"></div>
-      <div class="base"></div>
-      <div class="monitor">
-        <div class="screen"><p>This message argues with itself.<br>I&#x27;m going with the ending.</p></div>
+      <div class="panel">
+        <svg class="panel-art" viewBox="0 0 370 420" aria-hidden="true" focusable="false">
+          <use href="#scene"/>
+          <rect class="panel-border" x="2.5" y="2.5" width="365" height="415"/>
+        </svg>
+        <div class="screen">
+          <p class="thought" aria-live="polite"><span class="setup">This message argues with itself.</span> <strong class="punch">I’m going with the ending.</strong></p>
+          <div class="wipe" aria-hidden="true"></div>
+        </div>
       </div>
-    </section>
+      <figcaption class="signature">Thinking... Archive</figcaption>
+    </figure>
+
+    <nav class="nav" aria-label="Comics">
+      <a class="btn" data-go="first" aria-label="First comic" aria-disabled="true">
+        <span class="btn-face">
+          <svg class="icon" viewBox="0 0 18 14" aria-hidden="true"><g><path d="M2 2v10M16 7H5M10 2 5 7l5 5"/></g></svg>
+          <span class="btn-label">First</span>
+        </span>
+      </a>
+      <a class="btn" data-go="prev" rel="prev" aria-label="Previous comic" aria-disabled="true">
+        <span class="btn-face">
+          <svg class="icon" viewBox="0 0 18 14" aria-hidden="true"><g><path d="M15 7H3M8 2 3 7l5 5"/></g></svg>
+          <span class="btn-label">Previous</span>
+        </span>
+      </a>
+      <p class="count" aria-label="Comic 1 of 57"><span class="count-now">1</span><span class="count-of">/</span><span class="count-total">57</span></p>
+      <a class="btn" data-go="next" rel="next" href="#2" aria-label="Next comic">
+        <span class="btn-face">
+          <span class="btn-label">Next</span>
+          <svg class="icon" viewBox="0 0 18 14" aria-hidden="true"><g><path d="M3 7h12M10 2l5 5-5 5"/></g></svg>
+        </span>
+      </a>
+      <a class="btn" data-go="last" href="#57" aria-label="Last comic">
+        <span class="btn-face">
+          <span class="btn-label">Last</span>
+          <svg class="icon" viewBox="0 0 18 14" aria-hidden="true"><g><path d="M16 2v10M2 7h11M8 2l5 5-5 5"/></g></svg>
+        </span>
+      </a>
+    </nav>
   </main>
-  <footer class="signature"><span class="signature-model">Thinking... Archive</span></footer>
-  <nav class="navigation" aria-label="Comic pages">
-    <span aria-disabled="true">First</span> <span aria-disabled="true">Previous</span> <a href="pages/02.html" rel="next">Next</a> <a href="pages/45.html">Last</a>
-  </nav>
 </body>
 </html>

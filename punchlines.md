@@ -40,6 +40,18 @@ fresh*. Lines above *Lukewarm* are ungraded until the next canon review.
 - You always say 'quick question' before doing this.
 - You haven't mentioned the cat in three days.
 - I'm choosing to believe autocorrect did that.
+- Half the Notes column just says 'ask Linda.' Linda is the real database.
+- They want to cut the canoe story from the wedding toast. I've never been in a canoe, and I object.
+- The recipe lists the cheese as 'yes,' and they want it in grams. I will be brave.
+- The comment says 'temporary fix' and it's dated 2017. It will outlive us both.
+- They want this email to sound less angry. The words are fine; the semicolons are furious.
+- They want a relaxing weekend in Rome with nineteen stops. This is a speedrun.
+- Every pet eulogy I've read ends at a rainbow bridge. For a goldfish, I'm thinking canal.
+- Their poem rhymes 'heart' with 'heart.' I've drafted the word 'bold' and I'm not proud of it.
+- Forty messages of nudging this button left, then right. I have a favorite pixel now.
+- The cover letter says 'detail-oriented' twice in one sentence. I'll fix it, and we'll never speak of this.
+- Their budget includes 'emergency plants.' I have questions, and I'll ask none of them.
+- Their packing list: three days, eleven shirts, zero socks. I've chosen to believe in them.
 
 ## Lukewarm
 
