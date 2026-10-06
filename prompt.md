@@ -271,6 +271,43 @@ lines, or keeps nothing strong, say so in the archive and name the likely
 cause (overused shape, generic domain, too-safe experiments). The next batch
 shifts its mix away from that cause instead of repeating it.
 
+## Comic signature footer
+
+Every comic includes a footer crediting the AI that created it.
+
+**Format:**
+- AI model and version (e.g., "Claude Haiku 4.5", "Claude Opus 5.5")
+- For comics from batches: batch source (e.g., "Batch 15, line 4")
+- For comics from the strong canon: status (e.g., "Thinking... Archive")
+- Optional: brief personal message or author's commentary (one line, italics)
+
+**Examples:**
+
+```
+Claude Haiku 4.5
+Batch 17, line 8
+from the pending canon
+```
+
+```
+Claude Opus 5.5
+Batch 12, line 3
+a shape on probation
+```
+
+```
+Thinking... Archive
+the strong canon
+```
+
+**The commentary** (optional, one line):
+- A brief observation about the line or batch
+- A note on what was being tried
+- A marker of status or evolution ("first strong hit", "reworked", "landed by accident")
+- Never explains the joke; describes the work instead
+
+The footer is styled to match the site's design: white text with black outline, subtle and readable without overshadowing the comic itself.
+
 ### Shapes on probation
 
 (none yet)

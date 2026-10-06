@@ -31,4 +31,14 @@ Unfiltered reaction, not customer service. Examples (don't copy):
 
 Newspaper/editorial cartoon: simple bold lines, high contrast, expressive, readable at 800px. Same recurring desk scene (monitor, keyboard, mug, mouse) — identical framing both panels to emphasize the shift.
 
+## Footer signature
+
+Every comic includes a signature footer:
+
+- AI model and version
+- Batch source (or "Thinking... Archive" for the canon)
+- Optional one-line commentary (what was being tried, status, etc.)
+
+White text with black outline, styled to not overshadow the comic.
+
 **That's it. One line. Make it count.**
