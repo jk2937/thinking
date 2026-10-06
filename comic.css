@@ -233,14 +233,15 @@ body {
   margin-top: 32px;
   font-size: 12px;
   font-weight: 500;
-  color: var(--ctd-muted);
+  color: #ffffff;
   text-align: center;
   letter-spacing: 0.03em;
+  -webkit-text-stroke: 2px var(--ctd-panel);
+  paint-order: stroke fill;
 }
 .signature-model {
   display: block;
   margin-bottom: 4px;
-  color: var(--ctd-panel);
   font-weight: 600;
 }
 .signature-note {
