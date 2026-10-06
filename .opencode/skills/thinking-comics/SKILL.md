@@ -47,8 +47,9 @@ Paths below are from the repo root.
    that have landed"; when a kept experiment broke a rule, rewrite the rule.
    Batches where nothing lands are fine; the archive records them.
 4. **Build comics** only when the user says go:
-   - The site is one page, `index.html`. Every comic is an entry in
-     `comics.js`; its position is its number (`index.html#12`).
+   - Every comic is an entry in `comics.js`; its position is its number
+     (`comics.html#12`). The reader and the About page's index both read
+     from it.
    - Append `{ setup, punch, credit }`: the setup in regular weight, the
      punch (the last sentence) in bold, and the signature parts. Use
      typographic quotes (`‘ ’ “ ”`). No line breaks; the page wraps and
@@ -72,8 +73,10 @@ d2dc84e) and the original paper-and-ink style (before 268bc7b).
 
 ## Repo layout
 
-- `index.html` — the site: one comic at a time with nav; `#N` picks the comic
-- `comics.js` — every comic's text and signature · `comic.js` — the nav
+- `index.html` — the About page and an index of every comic
+- `comics.html` — the reader: one comic at a time with nav; `#N` picks it
+- `comics.js` — every comic's text and signature · `comic.js` — the reader's
+  nav · `contents.js` — builds the index
 - `comic.css` — the theme · `STYLE.md` — the style spec
 - `pages/` — redirects from the old per-comic URLs
 - `thinking.html` — the first comic, from the older series

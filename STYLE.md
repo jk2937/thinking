@@ -5,8 +5,10 @@ cartoon: bold black ink on white panels, a warm newsprint page around them,
 hatching for every shadow, and motion that moves in a few hard frames, like
 hand-drawn animation.
 
-The reference implementation is the site itself: `index.html` (the shared
-SVG scene), `comic.css` and `comic.js`. Every number below matches it.
+The reference implementation is the site itself: `comics.html` (the
+reader), `index.html` (the About page and index), `comic.css`, `comic.js` and
+`contents.js`. Both pages carry the same block of shared SVG defs (patterns,
+filters and the scene). Every number below matches it.
 
 ## 1. Principles
 
@@ -34,9 +36,15 @@ SVG scene), `comic.css` and `comic.js`. Every number below matches it.
 | `--type` | `#161616` | Panel 2 text |
 | glare | `#cfcfcf` | The two glare lines on the screen, nothing else |
 
-**Typeface:** `-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif`.
-It's a plain UI sans on purpose: the words are interface text on a screen,
-not hand lettering. No web fonts.
+**Typefaces:** two, with a strict split. No web fonts.
+
+| Token | Stack | Used for |
+| --- | --- | --- |
+| `--lettering` | `"Chalkboard SE", "Comic Neue", "Segoe Print", "Trebuchet MS", sans-serif` | The AI's words: both screens, the "Thinking..." wordmark, the thoughts in the index |
+| `--font` | `-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif` | Everything else: the signature, nav, section heads, counter, body copy |
+
+If a line is something the AI thinks, it's hand-lettered. If it's about the
+comic (credits, controls, explanations), it's set in the plain sans.
 
 ## 3. Line weights
 
@@ -105,7 +113,7 @@ side by side with a gutter of about 5.4% of the panel width (20 units).
 `(20, 20)` and `(410, 20)`. Signature centered at `x 400`, baseline `y 469`.
 
 **The scene** is drawn once and reused in both panels (`<symbol id="scene">`
-in `index.html` is the canonical markup). In draw order:
+in `comics.html` is the canonical markup). In draw order:
 
 | # | Element | Geometry (panel units) |
 | --- | --- | --- |
@@ -127,6 +135,8 @@ needs a prop to work, the joke needs rewriting.
 The screen spans `x 52–318`, `y 40–222` (266 × 182). Text stays within 246
 units of width, which leaves 10 units of padding on each side.
 
+All screen text is in `--lettering`.
+
 **Panel 1:** exactly `Thinking...`, centered, regular weight, `--idle`, 24
 units (`6.49cqw`), letter-spacing `0.05em`. Nothing else in the panel.
 
@@ -138,7 +148,8 @@ units (`6.49cqw`), letter-spacing `0.05em`. Nothing else in the panel.
 - 20 units (`5.4cqw`), line-height 1.3 (26 units), with `0.5em` (10 units)
   between setup and punch.
 - Centered on both axes, with balanced wrapping (`text-wrap: balance`).
-- About 22 characters per line regular and 21 bold. Six lines at most.
+- About 20 characters per line, since the lettering runs wider than a
+  sans. Six lines at most.
 - If it won't fit, shrink in 5% steps down to 70%. Past that, rewrite the
   line.
 - Typographic quotes and apostrophes: `‘ ’ “ ”`.
@@ -161,16 +172,40 @@ compete with the comic.
 
 ## 9. Page layout
 
-The page holds the comic, the signature and the nav, in that order, and
-nothing else.
+The comics page holds the masthead, the comic, the signature and the nav,
+in that order, and nothing else.
 
 - Body: newsprint, everything centered, padding `clamp(16px, 4vh, 40px) 16px`.
 - Comic width:
-  `min(100%, 980px, max(560px, (100dvh − 200px) × 370/420 × 2 + gutter))`.
-  Both panels fit the viewport height at once on desktop.
+  `min(100%, 980px, max(560px, (100dvh − 280px) × 370/420 × 2 + gutter))`,
+  held in `--comic-w` so the masthead matches it. Both panels and the nav
+  fit the viewport height at once on desktop.
 - At 640px and below, the panels stack into one column, up to 440px wide.
 - All screen type is in container units (`cqw`) on the panel, so it scales
   with the drawing.
+
+### Masthead
+
+On both pages, the same width as the comic (980px on the About page).
+
+- **Wordmark**, left: `Thinking` in ink plus `...` in `--idle`, lettered,
+  700, 26px (22px on phones). It links to the About page.
+- **Site links**, right: About and Comics in 13px bold uppercase with
+  `0.12em` tracking. A 4px bar under the current page is solid ink.
+- **Rule**, beneath: a newspaper double rule. A 3px ink border, a 3px
+  newsprint gap, then a 1px ink line (two stacked `box-shadow`s).
+
+### About page (`index.html`)
+
+- **Intro:** a single 300px panel showing only *Thinking...* next to the
+  lede (the plain sans, 700, 22–28px) and one paragraph (17px/1.55, 62ch
+  max). Then two ink buttons: "Start at No. 1" and "Latest". Below 640px,
+  the panel stacks above the copy.
+- **Section heads:** a 3px ink rule above small tracked capitals (13px,
+  700, uppercase, `0.12em`). A count in `--idle` can sit beside one.
+- **Every comic:** a two-column list (`columns: 2 340px`) built from
+  `comics.js`. Each row has a 2px ink number stamp, then the thought
+  lettered, with the punch bold. A 1px ink rule separates rows.
 
 ## 10. Navigation
 
@@ -220,6 +255,9 @@ Hard frames, no easing curves.
 | Counter tick | New number slides 0.7em in from the direction of travel and fades in | 180ms `steps(3)` |
 | Signature | Fades in | 180ms `steps(3)` |
 | Steam | Each strand cycles three drawings, the second one frame behind the first | 400ms per frame, always on |
+| Wordmark dots | On hover, each dot inks in and back to gray, 150ms after the one before, like a loader | 900ms loop, `steps(1)` |
+| Site links | A heavy-hatch underline sweeps in left to right | 200ms `steps(4)` |
+| Index stamps | Light hatch sweeps across the number, and the line underlines | 200ms `steps(4)` |
 
 **Reduced motion** (`prefers-reduced-motion: reduce`): every animation and
 transition is off, the steam is frozen, and comics swap instantly.

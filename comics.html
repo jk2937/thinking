@@ -3,15 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Thinking...</title>
+  <title>Thinking... — 1 of 57</title>
   <meta name="description" content="Two-panel comics in which an AI's private thought briefly becomes visible.">
-  <script>
-    // Old links were /#12; the comics now live on comics.html.
-    if (/^#\d+$/.test(location.hash)) location.replace('comics.html' + location.hash);
-  </script>
   <link rel="stylesheet" href="comic.css">
   <script src="comics.js" defer></script>
-  <script src="contents.js" defer></script>
+  <script src="comic.js" defer></script>
 </head>
 <body>
   <!-- Shared ink: hatching, the hand-inked wobble, the line boil, and the desk
@@ -128,54 +124,63 @@
     </defs>
   </svg>
 
-  <main class="page about">
+  <main class="page">
     <header class="masthead">
       <a class="wordmark" href="index.html">Thinking<span class="wordmark-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span><span class="visually-hidden">...</span></a>
       <nav class="sitenav" aria-label="Site">
-        <a href="index.html" aria-current="page">About</a>
-        <a href="comics.html">Comics</a>
+        <a href="index.html">About</a>
+        <a href="comics.html" aria-current="page">Comics</a>
       </nav>
     </header>
 
-    <section class="intro">
-      <div class="panel intro-panel">
+    <figure class="comic" aria-label="Thinking... comic 1 of 57">
+      <div class="panel">
         <svg class="panel-art" viewBox="0 0 370 420" aria-hidden="true" focusable="false">
           <use href="#scene"/>
           <rect class="panel-border" x="2.5" y="2.5" width="365" height="415"/>
         </svg>
         <div class="screen"><p class="idle">Thinking...</p></div>
       </div>
-      <div class="intro-copy">
-        <h1 class="lede">An AI is partway through answering someone. For one panel, its private thought shows up on the screen.</h1>
-        <p>Every comic is two panels of the same desk. In the first, the screen says <em>Thinking...</em> In the second, it says what the AI was actually thinking: not a message to anyone, not a joke it&rsquo;s telling, just a small, candid reaction it would never say out loud.</p>
-        <div class="cta">
-          <a class="btn" href="comics.html#1">
-            <span class="btn-face">
-              <span class="btn-label">Start at No. 1</span>
-              <svg class="icon" viewBox="0 0 18 14" aria-hidden="true"><g><path d="M3 7h12M10 2l5 5-5 5"/></g></svg>
-            </span>
-          </a>
-          <a class="btn" href="comics.html#57" data-latest>
-            <span class="btn-face">
-              <span class="btn-label">Latest</span>
-              <svg class="icon" viewBox="0 0 18 14" aria-hidden="true"><g><path d="M16 2v10M2 7h11M8 2l5 5-5 5"/></g></svg>
-            </span>
-          </a>
+      <div class="panel">
+        <svg class="panel-art" viewBox="0 0 370 420" aria-hidden="true" focusable="false">
+          <use href="#scene"/>
+          <rect class="panel-border" x="2.5" y="2.5" width="365" height="415"/>
+        </svg>
+        <div class="screen">
+          <p class="thought" aria-live="polite"><span class="setup">This message argues with itself.</span> <strong class="punch">I’m going with the ending.</strong></p>
+          <div class="wipe" aria-hidden="true"></div>
         </div>
       </div>
-    </section>
+      <figcaption class="signature">Thinking... Archive</figcaption>
+    </figure>
 
-    <section class="about-section">
-      <h2>How they&rsquo;re made</h2>
-      <p>The thoughts are written by AI models in batches, from a prompt with a few strict rules. The AI can only know what the conversation shows. The thought is private, never addressed to the person it&rsquo;s helping. And the humor has to come from its reaction, not from a punchline.</p>
-      <p>A person reads every batch and keeps the lines that land. Newer comics are signed by the model that wrote them, with a short note in its own voice.</p>
-    </section>
-
-    <section class="about-section" id="all">
-      <h2>Every comic <span class="h2-count" data-total>57</span></h2>
-      <ol class="contents"></ol>
-      <noscript><p>The list needs JavaScript. <a href="comics.html">Read the comics</a> instead.</p></noscript>
-    </section>
+    <nav class="nav" aria-label="Comics">
+      <a class="btn" data-go="first" aria-label="First comic" aria-disabled="true">
+        <span class="btn-face">
+          <svg class="icon" viewBox="0 0 18 14" aria-hidden="true"><g><path d="M2 2v10M16 7H5M10 2 5 7l5 5"/></g></svg>
+          <span class="btn-label">First</span>
+        </span>
+      </a>
+      <a class="btn" data-go="prev" rel="prev" aria-label="Previous comic" aria-disabled="true">
+        <span class="btn-face">
+          <svg class="icon" viewBox="0 0 18 14" aria-hidden="true"><g><path d="M15 7H3M8 2 3 7l5 5"/></g></svg>
+          <span class="btn-label">Previous</span>
+        </span>
+      </a>
+      <p class="count" aria-label="Comic 1 of 57"><span class="count-now">1</span><span class="count-of">/</span><span class="count-total">57</span></p>
+      <a class="btn" data-go="next" rel="next" href="#2" aria-label="Next comic">
+        <span class="btn-face">
+          <span class="btn-label">Next</span>
+          <svg class="icon" viewBox="0 0 18 14" aria-hidden="true"><g><path d="M3 7h12M10 2l5 5-5 5"/></g></svg>
+        </span>
+      </a>
+      <a class="btn" data-go="last" href="#57" aria-label="Last comic">
+        <span class="btn-face">
+          <span class="btn-label">Last</span>
+          <svg class="icon" viewBox="0 0 18 14" aria-hidden="true"><g><path d="M16 2v10M2 7h11M8 2l5 5-5 5"/></g></svg>
+        </span>
+      </a>
+    </nav>
   </main>
 </body>
 </html>

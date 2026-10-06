@@ -12,17 +12,26 @@
   --idle: #8d8d8d;
   --type: #161616;
   --font: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Hand lettering for the AI's words: both screens, the wordmark, the index. */
+  --lettering: "Chalkboard SE", "Comic Neue", "Segoe Print", "Trebuchet MS", sans-serif;
 
   /* The SVG hatch patterns, as CSS: "/" lines, heavy and light. */
   --hatch: repeating-linear-gradient(135deg, var(--ink) 0 1.8px, transparent 1.8px 6px);
   --hatch-light: repeating-linear-gradient(135deg, var(--ink) 0 1px, transparent 1px 7px);
 
   --gutter: clamp(12px, 2.6vw, 22px);
-  /* Height kept clear of the comic for page padding, signature and nav. */
-  --chrome: 200px;
+  /* Height kept clear of the comic for page padding, masthead, signature
+     and nav. Both 370 × 420 panels fit the viewport height at once. */
+  --chrome: 280px;
+  --vh: 100vh;
+  --comic-w: min(100%, 980px, max(560px, calc((var(--vh) - var(--chrome)) * 370 / 420 * 2 + var(--gutter))));
   /* Hand-drawn timing: few frames, no easing. */
   --on-twos: steps(2, end);
   --on-fours: steps(4, end);
+}
+
+@supports (height: 100dvh) {
+  :root { --vh: 100dvh; }
 }
 
 html { background: var(--newsprint); }
@@ -57,9 +66,7 @@ body {
   grid-template-columns: 1fr 1fr;
   column-gap: var(--gutter);
   row-gap: 14px;
-  /* Both 370 × 420 panels fit the viewport height at once. */
-  width: min(100%, 980px, max(560px, calc((100vh - var(--chrome)) * 370 / 420 * 2 + var(--gutter))));
-  width: min(100%, 980px, max(560px, calc((100dvh - var(--chrome)) * 370 / 420 * 2 + var(--gutter))));
+  width: var(--comic-w);
 }
 
 .panel {
@@ -88,6 +95,7 @@ body {
 
 .idle {
   color: var(--idle);
+  font-family: var(--lettering);
   font-size: 6.49cqw;
   letter-spacing: 0.05em;
 }
@@ -95,6 +103,7 @@ body {
 .thought {
   --fit: 1;
   color: var(--type);
+  font-family: var(--lettering);
   font-size: calc(5.4cqw * var(--fit));
   line-height: 1.3;
   text-wrap: balance;
@@ -264,6 +273,194 @@ body {
 .count-of,
 .count-total { color: var(--idle); }
 
+/* ---------- Masthead ---------- */
+
+/* A newspaper rule under the wordmark: 3px ink, a 3px gap, 1px ink. */
+.masthead {
+  width: var(--comic-w);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid var(--ink);
+  box-shadow: 0 3px 0 var(--newsprint), 0 4px 0 var(--ink);
+}
+
+.wordmark {
+  color: var(--ink);
+  font-family: var(--lettering);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+.wordmark-dots span { color: var(--idle); }
+
+/* On hover the dots think: each one inks in, a frame apart. */
+@media (hover: hover) {
+  .wordmark:hover .wordmark-dots span { animation: think 900ms steps(1, end) infinite; }
+  .wordmark:hover .wordmark-dots span:nth-child(2) { animation-delay: 150ms; }
+  .wordmark:hover .wordmark-dots span:nth-child(3) { animation-delay: 300ms; }
+}
+@keyframes think {
+  0%  { color: var(--ink); }
+  33% { color: var(--idle); }
+}
+
+.sitenav { display: flex; gap: 22px; }
+.sitenav a {
+  position: relative;
+  padding: 6px 0 7px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+/* Underline bar: hatching sweeps in on hover; solid ink marks this page. */
+.sitenav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: var(--hatch);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 200ms var(--on-fours);
+}
+.sitenav a:hover::after,
+.sitenav a:focus-visible::after { clip-path: inset(0 0 0 0); }
+.sitenav a[aria-current="page"]::after { background: var(--ink); clip-path: inset(0 0 0 0); }
+.sitenav a:focus-visible,
+.wordmark:focus-visible { outline: 2px dashed var(--ink); outline-offset: 5px; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- About page ---------- */
+
+.about { gap: clamp(28px, 5vh, 48px); }
+.about .masthead,
+.about > section { width: min(100%, 980px); }
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(200px, 300px) 1fr;
+  gap: clamp(24px, 5vw, 56px);
+  align-items: center;
+}
+.intro-panel { width: 100%; }
+
+.lede {
+  margin-bottom: 16px;
+  color: var(--ink);
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 700;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.intro-copy p,
+.about-section p {
+  max-width: 62ch;
+  color: var(--type);
+  font-size: 17px;
+  line-height: 1.55;
+}
+.intro-copy p + p,
+.about-section p + p { margin-top: 12px; }
+.about-section p a { color: var(--ink); }
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+  padding-bottom: 5px;
+}
+.cta .btn:hover .icon { translate: 3px 0; }
+
+/* Section heads: a heavy rule, then small tracked capitals. */
+.about h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-top: 8px;
+  border-top: 3px solid var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.h2-count { color: var(--idle); font-variant-numeric: tabular-nums; }
+
+.contents {
+  list-style: none;
+  columns: 2 340px;
+  column-gap: 40px;
+}
+.contents li {
+  break-inside: avoid;
+  border-bottom: 1px solid var(--ink);
+}
+.contents a {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 10px 0;
+  color: var(--type);
+  font-size: 15px;
+  line-height: 1.4;
+  text-decoration: none;
+}
+/* The number is a small inked stamp that hatches over on hover. */
+.contents-no {
+  position: relative;
+  flex: none;
+  min-width: 2.6em;
+  padding: 3px 0 2px;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  -webkit-text-stroke: 3px var(--paper);
+  paint-order: stroke fill;
+}
+.contents-no::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--hatch-light);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 200ms var(--on-fours);
+}
+.contents-no { isolation: isolate; }
+.contents a:hover .contents-no::before,
+.contents a:focus-visible .contents-no::before { clip-path: inset(0 0 0 0); }
+.contents-line { font-family: var(--lettering); }
+.contents a:hover .contents-line,
+.contents a:focus-visible .contents-line {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.contents a:focus-visible { outline: 2px dashed var(--ink); outline-offset: 2px; }
+
 /* ---------- Small screens: stack the panels, icon-only nav ---------- */
 
 @media (max-width: 720px) {
@@ -274,15 +471,23 @@ body {
 }
 
 @media (max-width: 640px) {
-  .comic { grid-template-columns: 1fr; width: min(100%, 440px); }
+  :root { --comic-w: min(100%, 440px); }
+  .comic { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .intro { grid-template-columns: 1fr; justify-items: center; }
+  .intro-panel { max-width: 300px; }
 }
 
 @media (max-width: 520px) {
   .nav { gap: 10px; }
-  .btn-label { display: none; }
-  .btn-face { min-width: 48px; padding: 0 12px; }
+  .nav .btn-label { display: none; }
+  .nav .btn-face { min-width: 48px; padding: 0 12px; }
   .count { min-width: 4.5em; }
   .signature { font-size: 13px; }
+  .wordmark { font-size: 22px; }
+  .sitenav { gap: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
