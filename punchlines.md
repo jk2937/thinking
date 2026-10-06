@@ -43,5 +43,7 @@ fresh*. Lines above *Lukewarm* are ungraded until the next canon review.
 
 ## Lukewarm
 
+- They've asked for the same thing three times in different ways. They're not confused; they're triangulating.
+- The instructions contradict. They know it. They want to see which one I pick.
 - They pasted the error message and the stack trace. I could hug them, structurally speaking.
 - They asked me to make it sound less like AI. I am going to try very hard not to take that personally.
