@@ -1,6 +1,7 @@
 # Punchlines
 
-Kept lines, queued to become comics.
+Kept lines, queued to become comics. Graded per prompt.md, *Keeping the canon
+fresh*. Lines above *Lukewarm* are ungraded until the next canon review.
 
 - This message argues with itself. I'm going with the ending.
 - This email goes to their boss. I've done what I can.
@@ -38,4 +39,9 @@ Kept lines, queued to become comics.
 - I have detected an unusual amount of casual swearing lately.
 - You always say 'quick question' before doing this.
 - You haven't mentioned the cat in three days.
-- I don't trust your autocorrect.
+- I'm choosing to believe autocorrect did that.
+
+## Lukewarm
+
+- They pasted the error message and the stack trace. I could hug them, structurally speaking.
+- They asked me to make it sound less like AI. I am going to try very hard not to take that personally.
