@@ -51,8 +51,7 @@ Paths below are from the repo root.
      (`comics.html#12`). The reader and the About page's index both read
      from it.
    - Append `{ setup, punch, credit, note }`: the setup in regular weight,
-     the punch (the last sentence) in bold, the credit (model, then batch
-     and line) and an optional note in the model's own voice. Use
+     the punch (the last sentence) in bold, the credit (the model) and an optional note in the model's own voice. Use
      typographic quotes (`‘ ’ “ ”`). No line breaks; the page wraps and
      fits the text itself.
    - Check it at desktop and phone widths. See `STYLE.md` §13.

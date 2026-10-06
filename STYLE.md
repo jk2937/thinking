@@ -163,8 +163,7 @@ per line and 10 more before the punch. Check every line with
 
 One line under the panels, in the site's two voices:
 
-- **Credit:** who made it and where it came from (`Claude Opus 5.5 · Batch
-  19, line 1`, or `Thinking... Archive`). Set in the plain sans like the
+- **Credit:** who made it (`Claude Opus 5.5`, or `Thinking... Archive`). Set in the plain sans like the
   site's labels: 11px, 700, uppercase, `0.12em` tracking, in ink.
 - **Note** (optional): the AI's aside in its own voice, under about 12
   words. Lettered in `--lettering` at 16px (15px on phones) in `--type`,
@@ -286,7 +285,7 @@ Add an entry to the end of `comics.js`:
 
 ```js
 { setup: "Their budget includes ‘emergency plants.’", punch: "I have questions, and I’ll ask none of them.",
-  credit: ["Claude Opus 5.5", "Batch 19, line 11"], note: "My money’s on a fern situation." },
+  credit: ["Claude Opus 5.5"], note: "My money’s on a fern situation." },
 ```
 
 Its position in the list is its number. The total, the nav and the page title
